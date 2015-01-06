@@ -7,14 +7,17 @@ ws.onmessage = function(event){
 };
 
 function ready(){
-    box = document.getElementById("inputbox");
+    var box = document.getElementById("inputbox");
     console.log('ready!');
-}
-
-function keydownfn(box){
-    if (box.keyCode == '13'){
-	ws.send(box.value);
-	box.value = "";
+	
+	box.onkeypress = function(e){
+        if (!e) e = window.event;
+        var keyCode = e.keyCode || e.which;
+		console.log(keyCode);
+        if (keyCode == '13'){
+			ws.send(box.value);
+            box.value = "";
+            return false;
+        }
     }
-    console.log(box);
 }
