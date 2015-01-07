@@ -15,7 +15,10 @@ function ready(){
         var keyCode = e.keyCode || e.which;
         console.log(keyCode);
         if (keyCode == '13'){
-            ws.send(box.value);
+            var packet;
+            packet.type = "chat";
+            packet.message = box.value;
+            ws.send(JSON.stringify(packet));
             box.value = "";
             return false;
         }
