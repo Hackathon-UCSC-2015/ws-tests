@@ -9,15 +9,43 @@ ws.onmessage = function(event){
 function ready(){
     var box = document.getElementById("inputbox");
     console.log('ready!');
-	
-	box.onkeypress = function(e){
+
+    box.onkeypress = function(e){
         if (!e) e = window.event;
         var keyCode = e.keyCode || e.which;
-		console.log(keyCode);
+        console.log(keyCode);
         if (keyCode == '13'){
-			ws.send(box.value);
+            ws.send(box.value);
             box.value = "";
             return false;
         }
     }
+
+    document.getElementById('passwordbox').onkeypress = function(e){
+        if (!e) e = window.event;
+        var keyCode = e.keyCode || e.which;
+        console.log(keyCode);
+        if (keyCode == '13'){
+            var packet;
+            packet.type = "login";
+            packet.username = document.getElementById('usernamebox').value.trim();
+            packet.password = document.getElementById('passwordbox').value.trim();
+            ws.send(JSON.stringify(packet));
+            document.getElementById('loginBoxes').innerHTML += "<br>Login request sent1</br>";
+            return false;
+        }
+    }
 }
+
+
+
+String.prototype.hashCode = function() {
+  var hash = 0, i, chr, len;
+  if (this.length == 0) return hash;
+  for (i = 0, len = this.length; i < len; i++) {
+    chr   = this.charCodeAt(i);
+    hash  = ((hash << 5) - hash) + chr;
+    hash |= 0; // Convert to 32bit integer
+  }
+  return hash;
+};
