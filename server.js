@@ -16,12 +16,28 @@ wss.broadcast = function(data){
 
 var usercount = 0;
 
+function passwordMatches(users, name, password)
+{
+    return users[name] === password;
+}
+
+var userlist = {}
+userlist['timmy'] = "foobar";
+
 wss.on('connection', function (ws){
-    console.log("Welcome person");
-    ws.on('message', function (message) {
-	console.log('got %s', message);
-	wss.broadcast(ws.customname+": "+message);
+    console.log("user "+usercount+" connected");
+    ws.on('message', function (message){
+	var data = JSON.parse(message);
+	if (data.type === "login"){
+	    if (passwordMatches(userlist, data.username, data.password))
+	    {
+		ws.loggedin = true;
+	    }
+	} else if (user.loggedin) {
+	    console.log('got %s', message);
+	    wss.broadcast(ws.username+": "+message);
+	}
     });
-    ws.customname = "User"+usercount++;
+    ws.username = "User"+usercount++;
     ws.send("Hello");
 });
