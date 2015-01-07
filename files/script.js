@@ -27,7 +27,7 @@ function ready(){
         if (!e) e = window.event;
         var keyCode = e.keyCode || e.which;
         if (keyCode == '13'){
-            var packet;
+            var packet = {};
             packet.type = "login";
             packet.username = document.getElementById('usernamebox').value.trim();
             packet.password = document.getElementById('passwordbox').value.trim();
