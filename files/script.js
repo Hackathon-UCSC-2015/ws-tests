@@ -13,7 +13,6 @@ function ready(){
     box.onkeypress = function(e){
         if (!e) e = window.event;
         var keyCode = e.keyCode || e.which;
-        console.log(keyCode);
         if (keyCode == '13'){
             var packet;
             packet.type = "chat";
@@ -27,7 +26,6 @@ function ready(){
     document.getElementById('passwordbox').onkeypress = function(e){
         if (!e) e = window.event;
         var keyCode = e.keyCode || e.which;
-        console.log(keyCode);
         if (keyCode == '13'){
             var packet;
             packet.type = "login";
