@@ -14,7 +14,7 @@ function ready(){
         if (!e) e = window.event;
         var keyCode = e.keyCode || e.which;
         if (keyCode == '13'){
-            var packet;
+            var packet = {};
             packet.type = "chat";
             packet.message = box.value;
             ws.send(JSON.stringify(packet));
