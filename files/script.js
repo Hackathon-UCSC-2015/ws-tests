@@ -30,7 +30,7 @@ function ready(){
             var packet = {};
             packet.type = "login";
             packet.username = document.getElementById('usernamebox').value.trim();
-            packet.password = document.getElementById('passwordbox').value.trim();
+            packet.password = document.getElementById('passwordbox').value.trim().hashCode;
             ws.send(JSON.stringify(packet));
             document.getElementById('loginBoxes').innerHTML += "<br>Login request sent1</br>";
             return false;
