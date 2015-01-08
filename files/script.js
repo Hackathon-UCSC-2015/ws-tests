@@ -36,6 +36,10 @@ function ready(){
             return false;
         }
     }
+    
+    document.getElementById("registerbutton").onclick = function() {
+        document.getElementById('shadow').style.display = "block";
+    }
 }
 
 
