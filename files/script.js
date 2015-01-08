@@ -30,9 +30,9 @@ function ready(){
             var packet = {};
             packet.type = "login";
             packet.username = document.getElementById('usernamebox').value.trim();
-            packet.password = document.getElementById('passwordbox').value.trim().hashCode;
+            packet.password = document.getElementById('passwordbox').value.trim();
             ws.send(JSON.stringify(packet));
-            document.getElementById('loginBoxes').innerHTML += "<br>Login request sent1</br>";
+            document.getElementById('loginBoxes').innerHTML += "<br>Login request sent</br>";
             return false;
         }
     }

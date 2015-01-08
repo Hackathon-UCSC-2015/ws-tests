@@ -31,11 +31,12 @@ wss.on('connection', function (ws){
 	if (data.type === "login"){
 	    if (passwordMatches(userlist, data.username, data.password))
 	    {
-		ws.loggedin = true;
+		  ws.loggedin = true;
+            ws.username = data.username;
 	    }
-	} else if (ws.loggedin) {
+	} else if (ws.loggedin && data.type === "chat") {
 	    console.log('got %s', message);
-	    wss.broadcast(ws.username+": "+message);
+	    wss.broadcast(ws.username+": "+data.message);
 	}
     });
     ws.username = "User"+usercount++;
