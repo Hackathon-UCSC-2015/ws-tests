@@ -33,7 +33,7 @@ wss.on('connection', function (ws){
 	    {
 		ws.loggedin = true;
 	    }
-	} else if (user.loggedin) {
+	} else if (ws.loggedin) {
 	    console.log('got %s', message);
 	    wss.broadcast(ws.username+": "+message);
 	}
